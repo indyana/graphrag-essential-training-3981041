@@ -1,4 +1,10 @@
 {
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "updateContentCommand": "python3.12 -m venv .venv && ./.venv/bin/pip install --upgrade pip && ./.venv/bin/pip install -r requirements.txt",
   "customizations": {
     "codespaces": {
       "openFiles": [
@@ -8,7 +14,8 @@
     "vscode": {
       // Set *default* container specific settings.json values on container create.
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
@@ -21,8 +28,6 @@
   },
   // Update welcome text and set terminal prompt to '$ '
   "onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc",
-  // Install course requirements
-  "postCreateCommand": "pip install -r requirements.txt",
   // Pull all branches
   "postAttachCommand": "git pull --all"
 }
